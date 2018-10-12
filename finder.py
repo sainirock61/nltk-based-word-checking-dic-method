@@ -1,4 +1,4 @@
-from naturalprocessingwordnet import getsynonyms
+# from naturalprocessingwordnet import getsynonyms
 textFile = open("./a.txt", "r")
 wordsToFind = textFile.read().lower().split(" ")
 # wordsToFind[:-1]
@@ -21,11 +21,11 @@ for i in positiveFile:
 start = False
 
 for i in negativeFile:
-    if i == "2-faced":
+    if i == "2-faced\n":
         start = True
     if start:
         negativeWords.append(i.lower().strip())
-# print( positiveWords  )
+print( negativeWords  )
 class TrieNode:
 
     # Trie node class
