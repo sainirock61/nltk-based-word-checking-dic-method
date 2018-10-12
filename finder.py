@@ -1,9 +1,8 @@
-# from naturalprocessingwordnet import getsynonyms
+from naturalprocessingwordnet import getsynonyms
 textFile = open("./a.txt", "r")
 wordsToFind = textFile.read().lower().split(" ")
 # wordsToFind[:-1]
 wordsToFind[-1] = wordsToFind[-1].strip().strip(".")
-print(wordsToFind)
 # wordsToFind = ["motivated"]
 positiveWordsFile = open("./list of positive words.txt", "r")
 negativeWordsFile = open("./list of negative words.txt", "r")
@@ -25,7 +24,6 @@ for i in negativeFile:
         start = True
     if start:
         negativeWords.append(i.lower().strip())
-print( negativeWords  )
 class TrieNode:
 
     # Trie node class
