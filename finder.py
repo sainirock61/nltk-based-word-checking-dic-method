@@ -3,7 +3,6 @@ textFile = open("./a.txt", "r")
 wordsToFind = textFile.read().lower().split(" ")
 # wordsToFind[:-1]
 wordsToFind[-1] = wordsToFind[-1].strip().strip(".")
-print(wordsToFind)
 # wordsToFind = ["motivated"]
 positiveWordsFile = open("./list of positive words.txt", "r")
 negativeWordsFile = open("./list of negative words.txt", "r")
@@ -21,11 +20,10 @@ for i in positiveFile:
 start = False
 
 for i in negativeFile:
-    if i == "2-faced":
+    if i == "2-faced\n":
         start = True
     if start:
         negativeWords.append(i.lower().strip())
-# print( positiveWords  )
 class TrieNode:
 
     # Trie node class
