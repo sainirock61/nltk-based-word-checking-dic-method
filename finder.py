@@ -9,7 +9,9 @@ negativeWordsFile = open("./list of negative words.txt", "r")
 start = False
 positiveFile = list(positiveWordsFile)
 negativeFile = list(negativeWordsFile)
-
+posSet = set()
+negSet = set()
+neutralSet = set()
 positiveWords = []
 negativeWords = []
 for i in positiveFile:
@@ -100,9 +102,11 @@ def main():
     for word in wordsToFind:
         word = word.lower()
         if positiveTrie.search(word):
+            posSet.add(word)
             destPosFile = open("./destinationposfile.txt", "a+")
             destPosFile.write(word+"\n")
         elif negativeTrie.search(word):
+            negSet.add(word)
             destNegFile = open("./destinationnegfile.txt", "a+")
             destNegFile.write(word+"\n")
         else:
@@ -111,20 +115,28 @@ def main():
             synonyms = getsynonyms(word)
             for syn in synonyms:
                 if positiveTrie.search(syn):
-                    destPosFile = open("./destinationposfile.txt", "a+")
-                    destPosFile.write(syn + "\n")
+                    posSet.add(syn)
                     synonymFound = True
                     break
                 elif negativeTrie.search(syn):
-                    destNegFile = open("./destinationnegfile.txt", "a+")
-                    destNegFile.write(syn + "\n")
+                    negSet.add(syn)
                     synonymFound = True
                     break
             if synonymFound == False:
-                destNeutralFile = open("./destinationneufile.txt", "a+")
-                destNeutralFile.write(word + "\n")
+                neutralSet.add(word)
         # Search for different keys
-
+    destPosFile = open("./destinationposfile.txt", "a+")
+    for w in posSet:
+        destPosFile.write(w + "\n")
+    destPosFile.close()
+    destNegFile = open("./destinationposfile.txt", "a+")
+    for w in negSet:
+        destNegFile.write(w + "\n")
+    destNegFile.close()
+    destNeutralFile = open("./destinationneufile.txt", "a+")
+    for w in neutralSet:
+        destNeutralFile.write(w + "\n")
+    destNeutralFile.close()
 if __name__ == '__main__':
     main()
 
