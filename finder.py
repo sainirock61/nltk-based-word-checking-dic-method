@@ -88,6 +88,16 @@ class Trie:
 
         return pCrawl != None and pCrawl.isEndOfWord
 
+def removeDuplicatesSave(file_name, set_data):
+    with open(file_name, 'r') as fp:
+        file_data = fp.readlines()
+        for word in file_data:
+            set_data.add(word.strip())
+        fp.close()
+    with open(file_name, 'w') as fp:
+        for word in set_data:
+            fp.write(word + "\n")
+        fp.close()
 
 def main():
     # Trie object
@@ -103,12 +113,10 @@ def main():
         word = word.lower()
         if positiveTrie.search(word):
             posSet.add(word)
-            destPosFile = open("./destinationposfile.txt", "a+")
-            destPosFile.write(word+"\n")
+            removeDuplicatesSave("./destinationposfile.txt", posSet)
         elif negativeTrie.search(word):
             negSet.add(word)
-            destNegFile = open("./destinationnegfile.txt", "a+")
-            destNegFile.write(word+"\n")
+            removeDuplicatesSave("./destinationnegfile.txt", negSet)
         else:
             synonyms = []
             synonymFound = False
@@ -125,18 +133,9 @@ def main():
             if synonymFound == False:
                 neutralSet.add(word)
         # Search for different keys
-    destPosFile = open("./destinationposfile.txt", "a+")
-    for w in posSet:
-        destPosFile.write(w + "\n")
-    destPosFile.close()
-    destNegFile = open("./destinationposfile.txt", "a+")
-    for w in negSet:
-        destNegFile.write(w + "\n")
-    destNegFile.close()
-    destNeutralFile = open("./destinationneufile.txt", "a+")
-    for w in neutralSet:
-        destNeutralFile.write(w + "\n")
-    destNeutralFile.close()
+    removeDuplicatesSave("./destinationposfile.txt", posSet)
+    removeDuplicatesSave("./destinationnegfile.txt", negSet)
+    removeDuplicatesSave("./destinationneufile.txt", neutralSet)
 if __name__ == '__main__':
     main()
 
