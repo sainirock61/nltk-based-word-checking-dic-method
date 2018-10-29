@@ -4,7 +4,7 @@ from sentencecounter import gettempwords,getallline,getline
 
 print ("## IT'S STARTING OF ONLYFILE READWRITE SCRIPT ##")
 def createnegfile(filename,word):
-    # filename = input("Enter destination file name in string format :")
+    # filename = input("Enter destination & file name in string format :")
     f = open(filename,'a')
     f.writelines(word +"\n")
 
